@@ -8,10 +8,9 @@ use App\Models\Todos;
 class TodosController extends Controller
 {
     public function index(){
-        $todos = Todos::all();
-        return view('Todos.todos_list', compact('todos'));
+        $todos = Todos::paginate(3);
+        return response()->json($todos);
     }
-
     public function store(Request $request)
     {
         $todos = new Todos();
