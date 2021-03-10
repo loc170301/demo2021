@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TodosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +18,16 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::post('/todos', [TodosController::class, 'store'])->name('todos.store');
+Route::get('/todos/{id}', [TodosController::class, 'show'])->name('todos_show');
+Route::put('/todos/{id}', [TodosController::class, 'update'])->name('todos.update');
+Route::delete('/todos/{id}', [TodosController::class, 'delete'])->name('todos_delete');
+
+
+
+
+
+
+
