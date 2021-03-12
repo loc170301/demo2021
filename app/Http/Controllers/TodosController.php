@@ -11,15 +11,24 @@ class TodosController extends Controller
         $todos = Todos::paginate(3);
         return response()->json($todos);
     }
-    public function store(Request $request)
-    {
+    public function store(Request $request){
         $todos = new Todos();
         $todos->notes = $request->notes;
         $todos->status = 0;
         $todos->save();
 
         return response()->json($todos, 201);
-    }
+       }
+    // public function store(Request $request)
+    // {
+        
+    //     $todos = new Todos();
+    //     $todos->notes = $request->notes;
+    //     $todos->status = 0;
+    //     $todos->save();
+
+    //     return response()->json($todos, 201);
+    // }
 
     public function show($id){
         $todo = Todos::find($id);
@@ -28,7 +37,6 @@ class TodosController extends Controller
 
     public function update($id,Request $request){
         $todo = Todos::find($id);
-
         $todo->notes = $request->post('notes');
 
         if ($request->has('status')) {
